@@ -5,16 +5,13 @@
 class smartphone;
 class admin: public admin_user
 {
-protected:
-	smartphone *phone;
-	int size;
 public:
 	admin();
 	~admin();
 	bool login();
 	void insert();
 	void update();
-	void Delete();
+	void Delete(); 
 	void displayInvoice();
 };
 

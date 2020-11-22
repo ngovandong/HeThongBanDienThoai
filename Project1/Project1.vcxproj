@@ -24,16 +24,19 @@
     <ClCompile Include="DBHelper.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpp17</LanguageStandard>
     </ClCompile>
+    <ClCompile Include="function.cpp" />
     <ClCompile Include="smartphone.cpp" />
-    <ClCompile Include="StudentManagementCPlusPlus.cpp">
+    <ClCompile Include="main.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Default</LanguageStandard>
     </ClCompile>
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="admin_user.h" />
     <ClInclude Include="admin.h" />
     <ClInclude Include="DBHelper.h" />
     <ClInclude Include="smartphone.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

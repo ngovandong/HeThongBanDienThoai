@@ -5,13 +5,10 @@
 using namespace std;
 admin::admin()
 {
-	this->phone = NULL;
-	size = 0;
 }
 
 admin::~admin()
 {
-	delete[] this->phone;
 }
 
 bool admin::login()

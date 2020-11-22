@@ -5,7 +5,6 @@
 #include <sqltypes.h>
 #include <sql.h>
 #include<stdlib.h>
-#include "Student.h"
 class DBHelper
 {
 protected:
@@ -19,12 +18,6 @@ protected:
 
 public:
 	void init();
-	void Insert();
-	void Insert(const Student& );
-	void Select(Student*&);
-	void Update();
-	void Delete();
 	void close();
-
 };
 
