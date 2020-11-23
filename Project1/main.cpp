@@ -12,13 +12,14 @@
 #include "admin.h"
 #include "smartphone.h"
 #include "admin_user.h"
+#include "user.h"
 //use the std namespace
 using namespace std;
 int main()
 {
-	admin a;
+	user a;
 	a.init();
-	a.Delete();
+	a.buy();
 	a.close();
 	return 0;
 }

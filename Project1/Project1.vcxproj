@@ -24,7 +24,6 @@
     <ClCompile Include="DBHelper.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpp17</LanguageStandard>
     </ClCompile>
-    <ClCompile Include="function.cpp" />
     <ClCompile Include="smartphone.cpp" />
     <ClCompile Include="main.cpp">
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Default</LanguageStandard>
