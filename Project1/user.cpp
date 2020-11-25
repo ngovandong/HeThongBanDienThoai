@@ -86,7 +86,7 @@ void user::buy()
 	SQLCancel(sqlStmtHandle);
 	//choose smartphone need buy
 	this->display1();
-	string s2 = "insert into INVOICE_DETAIL  values ";
+	string s2 = "  exec  procupdatedata ";
 	int smartphone_id, qty;
 	while (true) {
 		cout << "\nChoose smartphone_id you need to buy: ";
@@ -94,11 +94,11 @@ void user::buy()
 		cout << "Quantity: ";
 		cin >> qty;
 		int k = 1;
-		s2 = s2 + "(" + to_string(invoice_id) + ", " + to_string(smartphone_id) + ", " + to_string(qty) + ")";
+		s2 = s2 + to_string(invoice_id) + ", " + to_string(smartphone_id) + ", " + to_string(qty);
 		cout << "Continue buy ? (if continue press 1, if stop press 0): ";
 		cin >> k;
 		if (!k) break;
-		s2 = s2 + ", ";
+		s2 += "  exec  procupdatedata ";
 	}
 	//insert invoice detail
 	char* m2 = new char[s2.length()];

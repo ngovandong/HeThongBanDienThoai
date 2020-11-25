@@ -103,7 +103,7 @@ void admin::Delete()
 	int id;
 	cout << "Enter smartphone_id need to delete: ";
 	cin >> id;
-	string s = "Delete from SMARTPHONE where smartphone_id= ";
+	string s = "update SMARTPHONE set deleted=1 where smartphone_id= ";
 	s += to_string(id);
 	char* m = new char[s.length()];
 	strcpy_s(m, s.length() + 1, s.c_str());
@@ -124,7 +124,7 @@ void admin::Delete()
 void admin::displayInvoice()
 {
 	cout << "Tat ca hoa don: " << endl;
-	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"select INVOICE.invoice_id,customer_name,date_buy,total,phonenumber,address,smartphone_name, INVOICE_DETAIL.qty, price,price*INVOICE_DETAIL.qty from INVOICE inner join INVOICE_DETAIL on INVOICE.invoice_id = INVOICE_DETAIL.invoice_id inner join SMARTPHONE on SMARTPHONE.smartphone_id = INVOICE_DETAIL.smartphone_id inner join CUSTOMER on CUSTOMER.customer_id = INVOICE.customer_id", SQL_NTS)) {
+	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"select INVOICE.invoice_id,customer_name,date_buy,total,phonenumber,address,smartphone_name, INVOICE_DETAIL.qty, unit_price,price*INVOICE_DETAIL.qty from INVOICE inner join INVOICE_DETAIL on INVOICE.invoice_id = INVOICE_DETAIL.invoice_id inner join SMARTPHONE on SMARTPHONE.smartphone_id = INVOICE_DETAIL.smartphone_id inner join CUSTOMER on CUSTOMER.customer_id = INVOICE.customer_id where deleted=0", SQL_NTS)) {
 		cout << "Error querying SQL Server";
 		cout << "\n";
 		close();
@@ -139,7 +139,7 @@ void admin::displayInvoice()
 		char phonenumber[20];
 		char address[60];
 		char smartphone_name[50];
-		int	price;
+		int	unit_price;
 		int qty;
 		int amount;
 		int k = 0;
@@ -152,7 +152,7 @@ void admin::displayInvoice()
 			SQLGetData(sqlStmtHandle, 6, SQL_CHAR, address, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 7, SQL_CHAR, smartphone_name, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 8, SQL_INTEGER, &qty, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 9, SQL_INTEGER, &price, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 9, SQL_INTEGER, &unit_price, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 10, SQL_INTEGER, &amount, SQL_RESULT_LEN, &ptrSqlVersion);
 
 
@@ -170,7 +170,7 @@ void admin::displayInvoice()
 			}
 			cout << "Smartphone name: " << smartphone_name << endl;
 			cout << "Quantity: " << qty << endl;
-			cout << "Unit_price: " << price << endl;
+			cout << "Unit_price: " << unit_price << endl;
 			cout << "Amount: " << amount << endl;
 		}
 	}

@@ -81,7 +81,6 @@ void smartphone::scan()
 void smartphone::update()
 {
 	cout << "******Enter smartphone feature*******" << endl;
-	cin.ignore();
 	cout << "Name: "; cin.getline(this->smartphone_name, 50);
 	cout << "Brand: "; cin.getline(this->brand, 20);
 	cout << "Price: "; cin >> this->price;

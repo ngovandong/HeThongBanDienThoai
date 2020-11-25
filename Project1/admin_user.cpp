@@ -7,7 +7,7 @@ void admin_user::display1()
 
 	//if there is a problem executing the query then exit application
 	//else display query result
-	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE ORDER BY qty_sold desc", SQL_NTS)) {
+	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE where deleted= 0 ORDER BY qty_sold desc", SQL_NTS)) {
 		cout << "Error querying SQL Server";
 		cout << "\n";
 		close();
@@ -63,7 +63,7 @@ void admin_user::display2()
 
 	//if there is a problem executing the query then exit application
 	//else display query result
-	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE ORDER BY price", SQL_NTS)) {
+	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE where deleted=0 ORDER BY price", SQL_NTS)) {
 		cout << "Error querying SQL Server";
 		cout << "\n";
 		close();
@@ -119,7 +119,7 @@ void admin_user::display3()
 
 	//if there is a problem executing the query then exit application
 	//else display query result
-	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE ORDER BY price desc", SQL_NTS)) {
+	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE where deleted=0 ORDER BY price desc", SQL_NTS)) {
 		cout << "Error querying SQL Server";
 		cout << "\n";
 		close();
@@ -176,8 +176,8 @@ void admin_user::search1()
 	cout << "Tim kiem theo ten:" << endl;
 	cout << "Search: ";
 	getline(cin, s);
-	string s1= "select count(*) from SMARTPHONE where smartphone_name like '%" + s + "%'";
-	string s2 = "select * from SMARTPHONE where smartphone_name like '%" + s + "%'";
+	string s1= "select count(*) from SMARTPHONE where deleted=0 and smartphone_name like '%" + s + "%'";
+	string s2 = "select * from SMARTPHONE where deleted=0 and smartphone_name like '%" + s + "%'";
 	char* m = new char[s1.length() + 1];
 	strcpy_s(m, s1.length() + 1, s1.c_str());
 	char* m2 = new char[s2.length() + 1];
@@ -253,8 +253,8 @@ void admin_user::search2()
 	cout << "Tim kiem theo hang:" << endl;
 	cout << "Search: ";
 	getline(cin, s);
-	string s1 = "select count(*) from SMARTPHONE where brand like '%" + s + "%'";
-	string s2 = "select * from SMARTPHONE where brand like '%" + s + "%'";
+	string s1 = "select count(*) from SMARTPHONE where deleted=0 and brand like '%" + s + "%'";
+	string s2 = "select * from SMARTPHONE where deleted=0 and  brand like '%" + s + "%'";
 	char* m = new char[s1.length() + 1];
 	strcpy_s(m, s1.length() + 1, s1.c_str());
 	char* m2 = new char[s2.length() + 1];
