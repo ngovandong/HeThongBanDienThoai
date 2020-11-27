@@ -3,12 +3,21 @@
 #include <string>
 #include<iomanip>
 using namespace std;
-admin::admin()
+
+admin* admin::m_instance = 0;
+
+admin::admin() {
+
+}
+admin::~admin()
 {
 }
 
-admin::~admin()
+admin* admin::getInstance()
 {
+	if (m_instance == 0)
+		m_instance = new admin();
+	return m_instance;
 }
 
 bool admin::login()

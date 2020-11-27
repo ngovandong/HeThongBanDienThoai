@@ -5,9 +5,12 @@
 class smartphone;
 class admin: public admin_user
 {
-public:
+private:
 	admin();
 	~admin();
+	static admin* m_instance; // singleton
+public:
+	static admin* getInstance(); //singleton
 	bool login();
 	void insert();
 	void update();

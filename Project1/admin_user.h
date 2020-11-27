@@ -1,7 +1,6 @@
 #pragma once
 #include "DBHelper.h"
-class admin_user :
-    public DBHelper
+class admin_user :public DBHelper
 {
 public:
     void display1();// hien thi theo thu tu ban chay nhat

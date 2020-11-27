@@ -1,5 +1,5 @@
 #include "user.h"
-
+user* user::m_instance = 0;
 user::user()
 {
 	this->phone = nullptr;
@@ -9,6 +9,13 @@ user::user()
 user::~user()
 {
 	delete[] this->phone;
+}
+
+user* user::getInstance()
+{
+	if (m_instance == 0)
+		m_instance = new user();
+	return m_instance;
 }
 
 void user::buy()

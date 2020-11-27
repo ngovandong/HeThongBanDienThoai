@@ -17,10 +17,9 @@
 using namespace std;
 int main()
 {
-	user a;
-	a.init();
-	a.buy();
-	a.close();
+	user::getInstance()->init();
+	user::getInstance()->display1();
+	user::getInstance()->close();
 	return 0;
 }
 
