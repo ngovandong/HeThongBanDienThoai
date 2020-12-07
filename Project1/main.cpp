@@ -17,9 +17,9 @@
 using namespace std;
 int main()
 {
-	user::getInstance()->init();
+	//user::getInstance()->init();
 	user::getInstance()->display1();
-	user::getInstance()->close();
+	//user::getInstance()->close();
 	return 0;
 }
 

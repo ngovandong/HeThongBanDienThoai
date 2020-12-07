@@ -4,7 +4,7 @@ using namespace std;
 #include "smartphone.h"
 void admin_user::display1()
 {
-
+	this->init();
 	//if there is a problem executing the query then exit application
 	//else display query result
 	if (SQL_SUCCESS != SQLExecDirect(sqlStmtHandle, (SQLWCHAR*)L"SELECT * FROM SMARTPHONE where deleted= 0 ORDER BY qty_sold desc", SQL_NTS)) {
@@ -32,18 +32,18 @@ void admin_user::display1()
 		char others[100];
 		int i = 0;
 		while (SQLFetch(sqlStmtHandle) == SQL_SUCCESS) {
-			SQLGetData(sqlStmtHandle, 1, 4, &smartphone_id, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 1, SQL_INTEGER, &smartphone_id, 1, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 2, SQL_CHAR, smartphone_name, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 3, SQL_CHAR, brand, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 4, SQL_INTEGER, &price, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 5, SQL_INTEGER, &qty, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 6, SQL_INTEGER, &qty_sold, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 7, SQL_INTEGER, &RAM, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 8, SQL_INTEGER, &ROM, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 9, SQL_INTEGER, &battery, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 4, SQL_INTEGER, &price, 1, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 5, SQL_INTEGER, &qty, 1, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 6, SQL_INTEGER, &qty_sold, 1, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 7, SQL_INTEGER, &RAM, 1, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 8, SQL_INTEGER, &ROM, 1, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 9, SQL_INTEGER, &battery, 1, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 10, SQL_C_FLOAT, &screen, 1, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 11, SQL_CHAR, color, SQL_RESULT_LEN, &ptrSqlVersion);
-			SQLGetData(sqlStmtHandle, 12, SQL_INTEGER, &cameras, SQL_RESULT_LEN, &ptrSqlVersion);
+			SQLGetData(sqlStmtHandle, 12, SQL_INTEGER, &cameras, 1, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 13, SQL_CHAR, warranty, SQL_RESULT_LEN, &ptrSqlVersion);
 			SQLGetData(sqlStmtHandle, 14, SQL_CHAR, others, SQL_RESULT_LEN, &ptrSqlVersion);
 
@@ -52,10 +52,10 @@ void admin_user::display1()
 			smartphone* Sm = new smartphone(smartphone_id, smartphone_name, brand, price,
 				qty, qty_sold, RAM, ROM, battery, screen, color, cameras, warranty, others);
 			(*Sm).print();
-			cout << "***********************************"<<endl;
 		}
 	}
 	SQLCancel(sqlStmtHandle);
+	this->close();
 }
 
 void admin_user::display2()
